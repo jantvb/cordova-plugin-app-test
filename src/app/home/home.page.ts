@@ -1,3 +1,4 @@
+import { FaceMeService } from './../providers/face-me.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  licenseKey = '';
+
+  constructor(private faceMeService: FaceMeService) {}
+
+  getLicense(): void {
+    this.faceMeService.inizialize(this.licenseKey).then(result => {
+      alert('License key is ' + result);
+    }).catch(err => {
+      alert('Error is ' + err);
+    });
+  }
 
 }
